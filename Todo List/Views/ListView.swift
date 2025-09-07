@@ -8,35 +8,45 @@
 import SwiftUI
 
 struct ListView: View {
-    @State private var items: [ItemModel] = [
-        ItemModel(title: "First Item", isCompleted: false),
-        ItemModel(title: "Second Item", isCompleted: true),
-        ItemModel(title: "Third Item", isCompleted: false),
-    ]
+    @EnvironmentObject var listViewModel: ListViewModel
+    @State private var editMode: EditMode = .inactive
     var body: some View {
-        NavigationStack{
-            List{
-                ForEach(items) { item in
-                    ListRowView(item: item)
-                }
+        List{
+            ForEach(listViewModel.items) { item in
+                ListRowView(item: item)
+                    .onTapGesture {
+                        withAnimation {
+                            listViewModel.updateItem(item: item)
+                        }
+                    }
             }
-            .listStyle(.plain)
-            .navigationTitle("Todo List")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    EditButton()
-                }
-                
-                ToolbarItem {
-                    NavigationLink("Add") {
-                        AddView()
+            .onDelete(perform: listViewModel.deleteItem)
+            .onMove(perform: listViewModel.moveItem)
+        }
+        .listStyle(.plain)
+        .navigationTitle("Todo List")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(editMode == .active ? "Done" : "Edit") {
+                    withAnimation {
+                        editMode = editMode == .active ? .inactive : .active
                     }
                 }
             }
+            
+            ToolbarItem {
+                NavigationLink("Add") {
+                    AddView()
+                }
+            }
         }
+        .environment(\.editMode, $editMode)
     }
 }
 
 #Preview {
-    ListView()
+    NavigationStack{
+        ListView()
+            .environmentObject(ListViewModel())
+    }
 }
