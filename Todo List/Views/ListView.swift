@@ -11,25 +11,43 @@ struct ListView: View {
     @EnvironmentObject var listViewModel: ListViewModel
     @State private var editMode: EditMode = .inactive
     var body: some View {
-        List{
-            ForEach(listViewModel.items) { item in
-                ListRowView(item: item)
-                    .onTapGesture {
-                        withAnimation(.linear) {
-                            listViewModel.updateItem(item: item)
-                        }
+        ZStack{
+            if !listViewModel.items.isEmpty{
+                List{
+                    ForEach(listViewModel.items) { item in
+                        ListRowView(item: item)
+                            .onTapGesture {
+                                withAnimation(.linear) {
+                                    listViewModel.updateItem(item: item)
+                                }
+                            }
                     }
+                    .onDelete(perform: listViewModel.deleteItem)
+                    .onMove(perform: listViewModel.moveItem)
+                }
+                .listStyle(.plain)
+            }else{
+                NoItemsView()
+                    .transition(
+                        .asymmetric(
+                            insertion: .opacity.animation(.easeIn(duration: 2.5)),
+                            removal: .opacity.animation(.easeOut(duration: 0.0))
+                        )
+                    )
             }
-            .onDelete(perform: listViewModel.deleteItem)
-            .onMove(perform: listViewModel.moveItem)
+            //        .overlay {
+            //            if listViewModel.items.isEmpty{
+            //                ContentUnavailableView("No items found", systemImage: "tray", description: Text("Please use the Add button in the top right corner to add your todo items"))
+            //            }
         }
-        .listStyle(.plain)
         .navigationTitle("Todo List")
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button(editMode == .active ? "Done" : "Edit") {
-                    withAnimation {
-                        editMode = editMode == .active ? .inactive : .active
+            if !listViewModel.items.isEmpty{
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(editMode == .active ? "Done" : "Edit") {
+                        withAnimation {
+                            editMode = editMode == .active ? .inactive : .active
+                        }
                     }
                 }
             }
@@ -42,7 +60,9 @@ struct ListView: View {
         }
         .environment(\.editMode, $editMode)
     }
+    
 }
+
 
 #Preview {
     NavigationStack{

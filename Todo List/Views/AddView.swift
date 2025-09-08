@@ -18,7 +18,7 @@ struct AddView: View {
                 TextField("Type something here...", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
-                    .background(Color(white: 0.8745))
+                    .background(Color(white: 0.8845))
                     .clipShape(.buttonBorder)
                 
                 Button {
