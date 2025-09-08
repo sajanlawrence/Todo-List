@@ -40,7 +40,7 @@ struct ListView: View {
             //                ContentUnavailableView("No items found", systemImage: "tray", description: Text("Please use the Add button in the top right corner to add your todo items"))
             //            }
         }
-        .navigationTitle("Todo List")
+        .navigationTitle("Taskaroo")
         .toolbar {
             if !listViewModel.items.isEmpty{
                 ToolbarItem(placement: .topBarLeading) {

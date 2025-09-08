@@ -18,7 +18,7 @@ struct AddView: View {
                 TextField("Type something here...", text: $textFieldText)
                     .padding(.horizontal)
                     .frame(height: 55)
-                    .background(Color(white: 0.8845))
+                    .background(Color(UIColor.secondarySystemBackground))
                     .clipShape(.buttonBorder)
                 
                 Button {
@@ -29,7 +29,7 @@ struct AddView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 55)
                         .foregroundStyle(.white)
-                        .background(.blue)
+                        .background(Color.accentColor)
                         .clipShape(.capsule)
                 }
             }
