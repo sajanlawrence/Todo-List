@@ -26,12 +26,27 @@
 
 ## 📸 Screenshots
 
-![No Items Screen](Assets/NoItems.png)
-
-![Home Screen](Assets/Home.png)
-
-![Add Items Screen](Assets/Add.png)
-
-![Edit Screen](Assets/Edit.png)
+<table>
+  <tr>
+    <td align="center">
+      <strong>No Items Screen</strong><br>
+      <img src="Assets/NoItems.png" alt="No Items Screen" width="250"/>
+    </td>
+    <td align="center">
+      <strong>Home Screen</strong><br>
+      <img src="Assets/Home.png" alt="Home Screen" width="250"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Add Items Screen</strong><br>
+      <img src="Assets/Add.png" alt="Add Items Screen" width="250"/>
+    </td>
+    <td align="center">
+      <strong>Edit Screen</strong><br>
+      <img src="Assets/Edit.png" alt="Edit Screen" width="250"/>
+    </td>
+  </tr>
+</table>
 
 
