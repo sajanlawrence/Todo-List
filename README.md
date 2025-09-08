@@ -16,6 +16,14 @@
 
 ---
 
+## 🛠 Tech Stack
+
+- **Swift 5**
+- **SwiftUI**
+- **UserDefaults** (for local persistence)
+
+---
+
 ## 📸 Screenshots
 
 ![No Items Screen](Assets/NoItems.png)
@@ -26,12 +34,4 @@
 
 ![Edit Screen](Assets/Edit.png)
 
----
 
-## 🛠 Tech Stack
-
-- **Swift 5**
-- **SwiftUI**
-- **UserDefaults** (for local persistence)
-
----
